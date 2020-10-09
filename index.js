@@ -59,21 +59,20 @@ class Calculator {
   getDisplayNumber(number) {
     const stringNumber = number.toString();
     const integerDigits = parseFloat(stringNumber.split('.')[0]);
-    const decimalDigits = stringNumber.split('.')[1]
+    const decimalDigits = stringNumber.split('.')[1];
     let integerDisplay;
-    if(isNaN(integerDigits)) {
+    if (isNaN(integerDigits)) {
       integerDisplay = '';
     } else {
       integerDisplay = integerDigits.toLocaleString('en', {
-        maximumFractionDigits: 0
-      })
+        maximumFractionDigits: 0,
+      });
     }
-      if(decimalDigits != null) {
-        return `${integerDisplay}.${decimalDigits}`
-      } else {
-        return integerDisplay
-      }
-
+    if (decimalDigits != null) {
+      return `${integerDisplay}.${decimalDigits}`;
+    } else {
+      return integerDisplay;
+    }
   }
 
   updateDisplay() {
@@ -84,6 +83,8 @@ class Calculator {
       this.prevOperandElement.innerText = `${this.getDisplayNumber(
         this.previousOperand
       )} ${this.operation}`;
+    } else {
+      this.prevOperandElement.innerText = '';
     }
   }
 }
