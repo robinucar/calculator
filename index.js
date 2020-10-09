@@ -60,7 +60,9 @@ class Calculator {
 
   updateDisplay() {
     this.currentOperandElement.innerText = this.currentOperand;
-    this.prevOperandElement.innerText = this.previousOperand;
+    if(this.operation != null) {
+      this.prevOperandElement.innerText = `${this.previousOperand} ${this.operation}`;
+    }
   }
 }
 
