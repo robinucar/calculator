@@ -1,35 +1,31 @@
 class Calculator {
-  constructor(prevOperand, currentOperand) {
-    this.prevOperandElement = prevOperand;
+  constructor(previousOperand, currentOperand) {
+    this.prevOperandElement = previousOperand;
     this.currentOperandElement = currentOperand;
+    this.clear();
   }
 
   clear() {
-
+    this.currentOperand = '';
+    this.previousOperand = '';
+    this.operation = undefined;
   }
 
-  delete() {
+  delete() {}
 
+  appendNumber(number) {
+    if(number === '.' && this.currentOperand.includes('.')) return
+    this.currentOperand = this.currentOperand.toString() + number.toString();
   }
 
-  appendNumber() {
+  chooseOperation(operation) {}
 
-  }
+  computed() {}
 
-  chooseOperation() {
-
-  }
-
-  computed() {
-
-  }
-
-  getDisplayNumber() {
-
-  }
+  getDisplayNumber() {}
 
   updateDisplay() {
-
+    this.currentOperandElement.innerText = this.currentOperand;
   }
 }
 
@@ -51,10 +47,14 @@ const currentOperandTextElement = document.querySelector(
   '[data-current-operand]'
 );
 
-const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement, currentOperandTextElement);
+const calculator = new Calculator(
+  previousOperandTextElement,
+  currentOperandTextElement
+);
 
 numberButtons.forEach((button) => {
-  button.addEventListener('click', function () {
-    console.log(button.innerText);
+  button.addEventListener('click', () => {
+    calculator.appendNumber(button.innerText);
+    calculator.updateDisplay();
   });
 });
