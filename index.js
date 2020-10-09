@@ -56,12 +56,20 @@ class Calculator {
     this.previousOperand = '';
   }
 
-  getDisplayNumber() {}
+  getDisplayNumber(number) {
+    const floatNumber = parseFloat(number);
+    if (isNaN(floatNumber)) return '';
+    return floatNumber.toLocaleString('en');
+  }
 
   updateDisplay() {
-    this.currentOperandElement.innerText = this.currentOperand;
-    if(this.operation != null) {
-      this.prevOperandElement.innerText = `${this.previousOperand} ${this.operation}`;
+    this.currentOperandElement.innerText = this.getDisplayNumber(
+      this.currentOperand
+    );
+    if (this.operation != null) {
+      this.prevOperandElement.innerText = `${this.getDisplayNumber(
+        this.previousOperand
+      )} ${this.operation}`;
     }
   }
 }
